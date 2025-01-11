@@ -1,28 +1,33 @@
-use learn_rust::greet;
+use std::{cmp::Ordering, io};
+use rand::Rng;
 
-fn main() {
-    greet();
-    let width = 4;
-    let height = 7;
-    let depth = 10;
+fn main(){
+    println!("Guess the number");
+    let secret_number = rand::thread_rng().gen_range(1,100);
 
-    {
-        let area = area_of(width, height);
-        // println!("Area is {}", area);
+    println!("Please input your guess.");
+    
+    loop {
+        let mut guess : String = String::new();
+              io::stdin()
+            .read_line( &mut guess)
+            .expect("Failed to read line");
+    
+        let guess: u32 = match guess.trim().parse(){ // Shadowing of variable type
+            Ok(num) => num,
+            Err(_) => {
+                println!("Please enter a numerical value!");
+                continue
+            }
+        };
+        
+        match guess.cmp(&secret_number){
+            Ordering::Less => println!("Too small"),
+            Ordering::Greater => println!("Too big"),
+            Ordering::Equal => {
+                println!("You win");
+                break;
+            },
+        }
     }
-         println!("Volume is {}", volume(width, height, depth));
-}
-fn area_of(_x: i32, _y: i32) -> i32 {
-    // 2a. Fix this function to correctly compute the area of a rectangle given
-    // dimensions x and y by multiplying x and y and returning the result.
-    //
-    return _x*_y;
-    // Challenge: It isn't idiomatic (the normal way a Rust programmer would do things) to use
-    //            `return` on the last line of a function. Change the last line to be a
-    //            "tail expression" that returns a value without using `return`.
-    //            Hint: `cargo clippy` will warn you about this exact thing.
-}
-
-fn volume(h:i32, l:i32, b:i32) -> i32 {
-    return h*l*b;
 }
