@@ -1,3 +1,3 @@
-pub fn greet(){
+pub fn greet() {
     print!("Hey there !")
 }
