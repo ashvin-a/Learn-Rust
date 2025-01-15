@@ -1,4 +1,7 @@
 mod references;
+mod reference_2;
+mod first_word;
+mod string_slice;
 
 fn main() {
     /*
@@ -28,7 +31,16 @@ fn main() {
     let x1 = String::from("hellop");
     let x2 = takes_and_gives(x1);
     println!("{}", x2);
+    references::noob();
     references::reference();
+    references::reference_pro();
+
+    reference_2::mutable();
+
+    first_word::first_word(&x2);
+    
+    string_slice::slice();
+
 }
 
 fn takes_ownership(string: String) {
