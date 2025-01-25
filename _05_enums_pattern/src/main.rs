@@ -1,4 +1,3 @@
-use std::fs::OpenOptions;
 
 enum IPAddressKind {
     V4(String), // Helps store data inside variants
@@ -33,14 +32,26 @@ impl Message {
 // ?Another use case of Enums
 enum Coins {
     Dime,
-    Rupee,
+    Rupee(State),
     Pound,
+}
+
+#[derive(Debug)]
+enum State {
+    Kerala,
+    Karnataka,
+    Goa,
+    Delhi,
 }
 
 fn value_of_coin(coin: Coins) -> i32 {
     match coin {
         Coins::Dime => 1,
-        Coins::Rupee => 10,
+        // Coins::Rupee => 10,
+        Coins::Rupee(state) => {
+            println!("{:?}", state);
+            10
+        }
         Coins::Pound => 20,
     }
 }
@@ -70,7 +81,32 @@ fn main() {
     println!(
         "{:#?}, {:#?}, {:#?}",
         value_of_coin(Coins::Dime),
-        value_of_coin(Coins::Rupee),
+        value_of_coin(Coins::Rupee(State::Kerala)),
         value_of_coin(Coins::Pound)
     );
+
+    let plus_var = None;
+    let var = Some(5);
+    println!("{:?}", plus_one(plus_var));
+    println!("{:?}", plus_one(Some(32)));
+    println!("{:?}", plus_one(var));
+
+    let some_value = Some(3);
+    match some_value {
+        Some(3) => println!("three"),
+        _ => (), // Does nothing if any other value is passed into some_value
+    }
+
+    //? If let syntax - Quite confusing.
+    if let Some(3) = some_value {
+        println!("HEHEE its Some(3)")
+    };
+}
+
+fn plus_one(x: Option<i32>) -> Option<i32> {
+    match x {
+        // None => None, Commented this out because the last condition showed warning of unreachable pattern
+        Some(i) => Some(i + 1),
+        _ => None, // This says that if x is of any other pattern, return None
+    }
 }
