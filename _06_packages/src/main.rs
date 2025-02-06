@@ -9,11 +9,12 @@ fn main() {
     //? Binary Crates and Library Crates
     println!("Hello, world!");
 
-    fn fun1() -> Result{
+    fn fun1() -> Result {
         Ok(())
     }
 
-    fn fun2() -> IOResult<()>{ //* Using aliases */
+    fn fun2() -> IOResult<()> {
+        //* Using aliases */
         Ok(())
     }
 
