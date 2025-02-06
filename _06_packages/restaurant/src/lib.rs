@@ -53,6 +53,13 @@ pub fn eat_at_restaurant(){
 
     //? In Rust, Parent class can't see whats happening in child class
     //? whereas the child class can see the Parent class
+
+    let mut meal = frontend::Breakfast::summer("Blah");
+    meal.toast = String::from("Bleh"); // Inorder to reassign a parameter, it has to be public.
+
+    let order1 = frontend::Appetizer::Salad;
+    let order2 = frontend::Appetizer::Soup;
+
 }
 
 
