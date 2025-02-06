@@ -40,11 +40,14 @@ mod frontend {
 
     }
 }
+pub use crate::frontend::hosting;
 
 pub fn eat_at_restaurant(){
     // * Relative path
     frontend::hosting::add_to_waitlist();
 
+    use frontend::hosting;
+    hosting::add_to_waitlist(); // Same as above
     // * Absolute path
     // crate::frontend::hosting::add_to_waitlist();
 
