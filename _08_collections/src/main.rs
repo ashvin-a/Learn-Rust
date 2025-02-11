@@ -1,3 +1,5 @@
+use stringify::run;
+
 fn main() {
     // Collections include vectors, hashmaps, and strings
     let a = [1, 2, 3];
@@ -41,4 +43,23 @@ fn main() {
         }
         println!("{:?}", v2)
     }
+
+    enum SpreadSheetCell{
+        Id(i32),
+        Name(String),
+        Address(String)
+    }
+
+    let row = vec![SpreadSheetCell::Id(32),
+            SpreadSheetCell::Name(String::from("Ashvin")),
+            SpreadSheetCell::Address(String::from("Blahblahblah")),
+            ];
+    
+    match &row[1] {
+        SpreadSheetCell::Id(i) => println!("Some number aan: {:?}", i),
+        _ => println!("Number alla!")
+    }
+
+    println!(".....Executing string module.....");
+    run()
 }
