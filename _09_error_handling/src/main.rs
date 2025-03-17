@@ -1,5 +1,5 @@
 use core::error;
-use std::{fmt::Error, fs::{File, read_to_string}, io::{ErrorKind, BufRead, BufReader}};
+use std::{fmt::Error, fs::{read_to_string, File}, io::{self, BufRead, BufReader, ErrorKind, Read}};
 
 fn main() {
     // a();
@@ -29,6 +29,14 @@ fn main() {
         }
     }
 
+    fn read_username_from_file() -> Result<String, io::Error>{
+        let mut s = String::new();
+        //? The `?` operator is used when we need the error to be thrown by
+        //? the callable function (if an error occure that is..)
+        File::open("hello.txt")?.read_to_string(&mut s)?; 
+        Ok(s)
+    }
+    println!("{:?}",read_username_from_file());
 }
 
 fn a(){
