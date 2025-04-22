@@ -28,7 +28,7 @@ fn main() {
         y: "132s",
     };
     let p3 = p1.swap(p2);
-    println!("{:?}",p3);
+    println!("{:?}", p3);
 }
 
 // Lets write a function that takes finds the largest out of a given list
